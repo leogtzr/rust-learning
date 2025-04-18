@@ -7,6 +7,9 @@ fn main() {
     let remainder = 43 % 5;
     let t = true;
     let f: bool = false;
+    let char1 = 'z';
+    let z: char = 'ℤ'; // with explicit type annotation
+    let heart_eyed_cat = '😻';
 
     println!("Sum: {}", sum);
     println!("Difference: {}", difference);
@@ -16,4 +19,7 @@ fn main() {
     println!("Remainder: {}", remainder);
     println!("True: {}", t);
     println!("False: {}", f);
+    println!("Char1: {}", char1);
+    println!("z: {}", z);
+    println!("heart: {}", heart_eyed_cat);
 }
