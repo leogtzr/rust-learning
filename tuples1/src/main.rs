@@ -4,5 +4,4 @@ fn main() {
     let six_point_four = x.1;
     let one: u8 = x.2;
     let unit = ();
-    println!("The unit is: {}", unit);
 }
