@@ -64,3 +64,14 @@ mod back_of_house {
 
     fn cook_order() {}
 }
+
+// use crate::front_of_house::hosting;
+
+mod customer {
+    // use crate::front_of_house::hosting;
+
+    pub fn eat_at_restaurant() {
+        // Usamos super:: para subir un nivel y acceder a lo que esté en scope.
+        super::hosting::add_to_waitlist();
+    }
+}
