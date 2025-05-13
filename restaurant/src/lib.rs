@@ -1,20 +1,8 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-        
-        fn seat_at_table() {}
-    }
+// Definition will be in the src/front_of_house.rs
+mod front_of_house;
 
-    mod serving {
-        fn take_orders() {}
-
-        fn serve_order() {}
-
-        fn take_payment() {}
-    }
-}
-
-use crate::front_of_house::hosting;
+pub use crate::front_of_house::hosting;
+use crate::front_of_house::hosting::add_to_waitlist;
 
 pub fn eat_at_restaurant() {
     // Order a breakfast in the summer with Rye toast
@@ -28,6 +16,8 @@ pub fn eat_at_restaurant() {
 
     // Relative path
     front_of_house::hosting::add_to_waitlist();
+    // Podemos acceder directamente una vez que ya tenemos el path directo.
+    add_to_waitlist();
     // meal.seasonal_fruit = String::from("blueberries");
 }
 
