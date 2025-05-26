@@ -1,0 +1,24 @@
+use std::collections::HashMap;
+
+fn average(numbers: &Vec<i32>) -> f32 {
+    let mut m: f32 = 0.0;
+
+    for val in numbers {
+        m += *val as f32;
+    }
+
+    m / numbers.len() as f32
+}
+
+fn median(numbers: &Vec<i32>) -> f32 {
+    if numbers.is_empty() {
+        panic!("El vector está vacío");
+    }
+
+fn main() {
+    let mut numbers = vec![1, 2, 3, 4, 5];
+
+    let avg = average(&numbers);
+
+    println!("Numbers: {:?}, md: {}", numbers, avg);
+}
