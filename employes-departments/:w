@@ -1,0 +1,52 @@
+use std::io;
+use std::io::Write;
+use std::collections::HashMap;
+
+const EXPECTED_NUMBER_OF_TOKENS_FOR_ADD: usize = 4;
+
+fn add_person_to_department(words: &Vec<&str>, personnel: &mut HashMap<String, Vec<String>>) -> Result<(), String> {
+    if words.len() != EXPECTED_NUMBER_OF_TOKENS_FOR_ADD {
+        return Err(format!("Wrong number of elements: {}, expected: {}", words.len(), EXPECTED_NUMBER_OF_TOKENS_FOR_ADD));
+    }
+
+    let person = words[1].to_string();
+    let department = words[words.len() - 1].to_string();
+
+    let dept_entry = personnel.entry(department).or_insert(Vec::new());
+    dept_entry.push(person);
+    
+    Ok(()) 
+}
+
+fn main() {
+    println!("Departments REPL v0.0");
+    let personnel: HashMap<&str, Vec<&str>> = HashMap::new();
+    loop {
+        print!("$ ");
+        io::stdout().flush().unwrap();
+
+        let mut user_input = String::new();
+        io::stdin()
+            .read_line(&mut user_input)
+            .expect("Failed to read users input")
+            ;
+
+        let words: Vec<&str> = user_input.split_whitespace().collect();
+        let command = words[0];
+
+        println!("The command to execute is: {}", command);
+
+        match command.to_lowercase().as_str() {
+            "add" => {
+                match add_person_to_department(&words, &mut personnel) {
+                    Ok(()) => println!("Ok"),
+                    Err(reason) => println!("Wow: something happened: {}", reason),
+                }
+            },
+            "view" => {
+                println!("view departments");
+            },
+            _ => println!("do another shit")
+        };
+    }
+}
