@@ -22,6 +22,19 @@ fn view_members_of_department<'a>(department: &str, personnel: &'a HashMap<Strin
    personnel.get(department).ok_or_else(|| format!("Department '{}' not found", department)) 
 }
 
+fn departments_by_person<'a>(personnel: &'a HashMap<String, Vec<String>>, person: &str) -> Vec<&'a String> {
+    personnel
+        .iter()
+        .filter_map(|(departamento, personas)| {
+            if personas.iter().any(|p| p == person) {
+                Some(departamento)
+            } else {
+                None
+            }
+        })
+    .collect()
+}
+
 fn main() {
     println!("Departments REPL v0.0");
     let mut personnel: HashMap<String, Vec<String>> = HashMap::new();
@@ -41,8 +54,6 @@ fn main() {
         }
         let command = words[0];
 
-        println!("The command to execute is: {}", command);
-
         match command.to_lowercase().as_str() {
             "add" => {
                 match add_person_to_department(&words, &mut personnel) {
@@ -60,6 +71,15 @@ fn main() {
                     Ok(members) => println!("Members: {:?}", members),
                     Err(reason) => println!("Wow: something bad happened: {}", reason)
                 }
+            },
+            "find" => {
+                if words.len() < 2 {
+                    println!("Please specify a person");
+                    continue;
+                }
+                let person = words[1];
+                let depts = departments_by_person(&personnel, person);
+                println!("{} works in: {:?}", person, depts);
             },
             _ => println!("do another shit")
         };
