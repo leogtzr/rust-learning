@@ -35,6 +35,12 @@ fn departments_by_person<'a>(personnel: &'a HashMap<String, Vec<String>>, person
     .collect()
 }
 
+fn print_department_count(personnel: &HashMap<String, Vec<String>>) {
+    for (department, people) in personnel {
+        println!("{}: {}", department, people.len());
+    }
+}
+
 fn main() {
     println!("Departments REPL v0.0");
     let mut personnel: HashMap<String, Vec<String>> = HashMap::new();
@@ -80,6 +86,9 @@ fn main() {
                 let person = words[1];
                 let depts = departments_by_person(&personnel, person);
                 println!("{} works in: {:?}", person, depts);
+            },
+            "count" => {
+                print_department_count(&personnel);
             },
             _ => println!("do another shit")
         };
