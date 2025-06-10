@@ -89,6 +89,7 @@ fn main() {
             },
             "count" => {
                 print_department_count(&personnel);
+
             },
             _ => println!("do another shit")
         };
