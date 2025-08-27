@@ -19,7 +19,7 @@ fn add_person_to_department(words: &Vec<&str>, personnel: &mut HashMap<String, V
 }
 
 fn view_members_of_department<'a>(department: &str, personnel: &'a HashMap<String, Vec<String>>) -> Result<&'a Vec<String>, String> {
-   personnel.get(department).ok_or_else(|| format!("Department '{}' not found", department)) 
+   personnel.get(department).ok_r_else(|| format!("Department '{}' not found", department)) 
 }
 
 fn departments_by_person<'a>(personnel: &'a HashMap<String, Vec<String>>, person: &str) -> Vec<&'a String> {
