@@ -14,7 +14,7 @@ fn main() {
         repost: false,
     };
 
-        let article = NewsArticle {
+    let article = NewsArticle {
         headline: String::from("Penguins win the Stanley Cup Championship!"),
         location: String::from("Pittsburgh, PA, USA"),
         author: String::from("Iceburgh"),
@@ -24,6 +24,16 @@ fn main() {
         ),
     };
 
+    let post2 = SocialPost {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        repost: false,
+    };
+
+    println!("1 new post: {}", post2.summarize());
     println!("New article available! {}", article.summarize());
     println!("Article: {}", news_article.summarize());
     println!("1 new post: {}", post.summarize());
